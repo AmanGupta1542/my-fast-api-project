@@ -1,4 +1,3 @@
-from re import A
 from uvicorn import run
 from application.main import app
 
