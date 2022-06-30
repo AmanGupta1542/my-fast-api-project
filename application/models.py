@@ -1,6 +1,6 @@
 from datetime import datetime
 import peewee
-from database import db
+from .database import db
 
 class User(peewee.Model):
     firstName = peewee.CharField(max_length=80)

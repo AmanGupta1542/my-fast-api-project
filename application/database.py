@@ -1,6 +1,6 @@
 from contextvars import ContextVar
 import peewee
-from settings import settings
+from .settings import settings
 
 
 db_state_default = {'closed': None, 'conn': None, 'ctx':None, 'transactions':None}

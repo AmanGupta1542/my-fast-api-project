@@ -1,12 +1,12 @@
 from fastapi import FastAPI
 from uvicorn import run
 
-from admin import main as admin_root
-from user import main as user_root
+from .admin import main as admin_root
+from .user import main as user_root
 
-from database import db
-from models import *
-from settings import settings
+from .database import db
+from .models import *
+from .settings import settings
 
 db.connect()
 db.create_tables([User, LoginToken, MailConfig, ResetPasswordToken])
