@@ -17,3 +17,7 @@ class SignUpUser(EmailSchema):
 
 class UserSignUpData(EmailSchema):
     password: str = Field(min_length=6)
+
+class SignInData(EmailSchema):
+    email: EmailStr
+    password: str
