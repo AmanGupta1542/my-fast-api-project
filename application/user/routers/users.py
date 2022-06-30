@@ -1,5 +1,6 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status
 from datetime import timedelta
+from fastapi.responses import JSONResponse
 
 from . import operations as UserO
 from ..schemas import common as CSchemas
@@ -25,9 +26,13 @@ def sign_in(data: CSchemas.SignInData):
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
+            detail="Incorrect email or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
     else:
         access_token = UserO.create_access_token(data={"sub": user.email}, expires_delta=timedelta(minutes=15))
         return {"status": "success", "access_token": access_token, "token_type": "bearer"}
+
+@router.get("/sign-out", response_model= CSchemas.User)
+def sign_out(current_uesr: CSchemas.User = Depends(UserO.get_current_active_user)):
+    return {"status": "signout successful"}

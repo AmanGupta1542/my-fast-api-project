@@ -1,9 +1,11 @@
 from fastapi import Depends
+from fastapi.security import HTTPBearer
 from passlib.context import CryptContext
 
 from .database import *
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+token_auth_scheme = HTTPBearer() 
 
 async def reset_db_state():
     db._state._state.set(db_state_default.copy())
