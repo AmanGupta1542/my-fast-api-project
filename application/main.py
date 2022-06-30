@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from uvicorn import run
 
 from .admin import main as admin_root
 from .user import main as user_root
@@ -9,14 +8,10 @@ from .models import *
 from .settings import settings
 
 db.connect()
-db.create_tables([User, LoginToken, MailConfig, ResetPasswordToken])
+db.create_tables([User, Admin, LoginToken, MailConfig, ResetPasswordToken])
 db.close()
 
 app = FastAPI(title = settings.app_name,)
 
 app.mount("/api", user_root.app)
 app.mount("/admin", admin_root.app)
-
-if __name__ == "__main__":
-    print('Server running...')
-    run(app, host="127.0.0.1", port=8000)

@@ -1,22 +1,13 @@
 from datetime import datetime
+from h11 import Data
 import peewee
 from .database import db
 
 class User(peewee.Model):
-    firstName = peewee.CharField(max_length=80)
-    lastName = peewee.CharField(max_length=80)
     email = peewee.CharField(unique=True, index=True)
     password = peewee.CharField()
-    changedPassword = peewee.CharField()
-    changedEmail = peewee.CharField()
-    upline = peewee.CharField()
-    downline = peewee.CharField()
-    tree = peewee.CharField()
-    kyc = peewee.BooleanField()
-    product = peewee.CharField()
-    marketingCampaign = peewee.CharField()
-    isActive = peewee.BooleanField(default=True)
-    role = peewee.IntegerField()
+    isActive = peewee.BooleanField(default=False)
+    createdAt = peewee.DateTimeField(default=datetime.now())
     class Meta:
         database = db
 
@@ -47,5 +38,13 @@ class MailConfig(peewee.Model):
     ssl= peewee.BooleanField()
     use_credentials = peewee.BooleanField()
     validate_certs = peewee.BooleanField()
+    class Meta:
+        database = db
+
+class Admin(peewee.Model):
+    username = peewee.CharField()
+    password = peewee.CharField()
+    accessType = peewee.IntegerField()
+    createdAt = peewee.DateTimeField(default=datetime.now())
     class Meta:
         database = db
