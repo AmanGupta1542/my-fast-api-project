@@ -22,7 +22,7 @@ settings = Settings()
 
 conf = ConnectionConfig(
     MAIL_USERNAME = "amangupta1542@gmail.com",
-    MAIL_PASSWORD = "tbivdzzntckiqnpk",
+    MAIL_PASSWORD = "dcuwgsqawpimxgzp",
     MAIL_FROM = "amangupta1542@gmail.com",
     MAIL_PORT = 587,
     MAIL_SERVER = "smtp.gmail.com",

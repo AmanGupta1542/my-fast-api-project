@@ -8,7 +8,7 @@ from .models import *
 from .settings import settings
 
 db.connect()
-db.create_tables([User, Admin, LoginToken, MailConfig, ResetPasswordToken])
+db.create_tables([User, LoginToken, MailConfig, ResetPasswordToken])
 db.close()
 
 app = FastAPI(title = settings.app_name,)

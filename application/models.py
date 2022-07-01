@@ -7,6 +7,8 @@ class User(peewee.Model):
     email = peewee.CharField(unique=True, index=True)
     password = peewee.CharField()
     isActive = peewee.BooleanField(default=False)
+    role = peewee.BooleanField()
+    accessType = peewee.IntegerField()
     createdAt = peewee.DateTimeField(default=datetime.now())
     class Meta:
         database = db
@@ -38,13 +40,5 @@ class MailConfig(peewee.Model):
     ssl= peewee.BooleanField()
     use_credentials = peewee.BooleanField()
     validate_certs = peewee.BooleanField()
-    class Meta:
-        database = db
-
-class Admin(peewee.Model):
-    username = peewee.CharField()
-    password = peewee.CharField()
-    accessType = peewee.IntegerField()
-    createdAt = peewee.DateTimeField(default=datetime.now())
     class Meta:
         database = db

@@ -10,6 +10,10 @@ class PeeweeGetterDict(GetterDict):
             return list(res)
         return res
 
+class ChangePass(BaseModel):
+    oldPassword: str = Field(min_length=6)
+    newPassword: str = Field(min_length=6)
+    
 class EmailSchema(BaseModel):
     email: EmailStr
 
@@ -29,6 +33,11 @@ class SignUpUser(EmailSchema):
 class UserSignUpData(EmailSchema):
     password: str = Field(min_length=6)
 
+class ResetPassword(BaseModel):
+    password: str = Field(
+        title="Password of the user", min_length=6
+    )
+
 class SignInData(EmailSchema):
     email: EmailStr
     password: str
@@ -37,6 +46,6 @@ class User(EmailSchema):
     id: int
     isActive: bool
 
-    # class Config:
-    #     orm_mode = True
-        # getter_dict = PeeweeGetterDict
+    class Config:
+        orm_mode = True
+        getter_dict = PeeweeGetterDict
